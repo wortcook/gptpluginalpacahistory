@@ -63,7 +63,6 @@ def get_historical_data(symbol: str, startDate: str, endDate: str):
         timeframe=TimeFrame.Day,
         start=datetime.strptime(startDate, '%Y-%m-%d'),
         end=datetime.strptime(endDate, '%Y-%m-%d'),
-        limit=1
     )
 
     barset = stock_client.get_stock_bars(request_params)
