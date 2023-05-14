@@ -1,0 +1,66 @@
+openapi: 3.0.1
+info:
+  title: TODO Plugin
+  description: A plugin that calls a server to get stock price data.
+  version: 'v1'
+servers:
+  - url: http://localhost:5003
+paths:
+  /stockprice:
+    post:
+      summary: Get stock price data
+      operationId: getStockPrice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockPriceRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockPriceResponse'
+components:
+  schemas:
+    StockPriceRequest:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: AAPL
+        startDate:
+          type: string
+          format: date
+          example: 2020-01-01
+        endDate:
+          type: string
+          format: date
+          example: 2020-01-01
+    StockPriceResponse:
+      type: object
+      properties:
+        price:
+          type: object
+          properties:
+            open:
+              type: number
+              format: double
+              example: 300.0
+            close:
+              type: number
+              format: double
+              example: 310.0
+            high:
+              type: number
+              format: double
+              example: 320.0
+            low:  
+              type: number
+              format: double
+              example: 290.0
+            volume:
+              type: number
+              format: long
+              example: 1000000
